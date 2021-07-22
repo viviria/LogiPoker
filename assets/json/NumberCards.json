@@ -1,0 +1,59 @@
+{
+    "NumberCards" : [
+        {
+            "name": "Num-1",
+            "value": -1,
+            "count": 10
+        },
+        {
+            "name": "Num0",
+            "value": 0,
+            "count": 10
+        },
+        {
+            "name": "Num1",
+            "value": 1,
+            "count": 10
+        },
+        {
+            "name": "Num2",
+            "value": 2,
+            "count": 10
+        },
+        {
+            "name": "Num3",
+            "value": 3,
+            "count": 10
+        },
+        {
+            "name": "Num4",
+            "value": 4,
+            "count": 10
+        },
+        {
+            "name": "Num5",
+            "value": 5,
+            "count": 10
+        },
+        {
+            "name": "Num6",
+            "value": 6,
+            "count": 10
+        },
+        {
+            "name": "Num7",
+            "value": 7,
+            "count": 10
+        },
+        {
+            "name": "Num8",
+            "value": 8,
+            "count": 10
+        },
+        {
+            "name": "Num9",
+            "value": 9,
+            "count": 10
+        }
+    ]
+}

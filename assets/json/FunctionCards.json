@@ -1,0 +1,20 @@
+{
+    "FunctionCards" : [
+        {
+            "type" : "Sum",
+            "count" : 10
+        },
+        {
+            "type" : "Sub",
+            "count" : 10
+        },
+        {
+            "type" : "Multi",
+            "count" : 10
+        },
+        {
+            "type" : "Div",
+            "count" : 10
+        }
+    ]
+}

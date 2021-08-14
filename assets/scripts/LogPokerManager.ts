@@ -1,5 +1,5 @@
 
-import { _decorator, Component, JsonAsset, SpriteAtlas, randomRangeInt, Prefab, Node, instantiate, Sprite } from 'cc';
+import { _decorator, Component, JsonAsset, SpriteAtlas, randomRangeInt, Prefab, Node, instantiate, Sprite, Socket } from 'cc';
 import { NumberCard, FunctionCard } from './Cards';
 const { ccclass, property } = _decorator;
 
@@ -31,6 +31,8 @@ export class LogPokerManager extends Component {
 
     private _NumberCards : NumberCard[] = []
     private _FunctionCards : FunctionCard[] = []
+
+    private _socket : Socket
 
     start () {
         // 数字カード生成

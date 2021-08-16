@@ -1,25 +1,29 @@
 import { Socket } from "cc";
 
 export class APIController {
-    private static instace: APIController;
-    private _Socket : Socket | null = null;
+    private static _instace: APIController;
+    private static _Socket : Socket | null = null;
 
     private constructor() {
     }
 
-    static GetInstance() {
-        if (!APIController.instace) {
-            APIController.instace = new APIController();
+    static GetInstance(): APIController {
+        if (!APIController._instace) {
+            APIController._instace = new APIController();
         }
-        return APIController.instace
+        return APIController._instace
     }
 
-    public SetSocket(socket : Socket) {
-        this._Socket = socket
+    static SetSocket(socket : Socket) {
+        APIController._Socket = socket
+    }
+
+    static GetUserID(): string {
+        return localStorage.getItem('LogiPokerUserID') || Math.random().toString(32).substring(2) + Date.now()
     }
 
     CallAPI(APIName: string, ...args: any[]) {
-        if (!this._Socket) return
+        if (!APIController._Socket) return
 
         if (args.length > 0) {
             // 最後の引数をコールバックとする
@@ -28,12 +32,12 @@ export class APIController {
             args = args.slice(0, args.length - 1)
             // リクエストを送信する
             if (args.length > 0) {
-                this._Socket.emit('Request' + APIName, ...args)
+                APIController._Socket.emit('Request' + APIName, ...args)
             } else {
-                this._Socket.emit('Request' + APIName)
+                APIController._Socket.emit('Request' + APIName)
             }
             // レスポンスのコールバック
-            this._Socket.on('Response' + APIName, Callback)
+            APIController._Socket.on('Response' + APIName, Callback)
         }
     }
 }

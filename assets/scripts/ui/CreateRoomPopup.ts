@@ -33,8 +33,9 @@ export class CreateRoomPopup extends Component {
             APIController.GetUserID(),
             Name,
             RoomPass,
-            () => {
+            (RoomData: any) => {
                 this.Loading.active = false
+                console.log(RoomData)
                 PopupComponent?.close()
             }
         )

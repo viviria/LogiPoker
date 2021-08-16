@@ -20,10 +20,8 @@ export class TopSceneManager extends Component {
         this._APIController = APIController.GetInstance()
         APIController.SetSocket(window.io())
 
-        this._APIController.CallAPI(APINames.UserEnter, APIController.GetUserID(), null)
-
-        this._APIController.CallAPI(APINames.RoomUserNum, (RoomUserNumMap: {[key: string]: number}) => {
-            console.log(RoomUserNumMap)
+        this._APIController.CallAPI(APINames.UserEnter, APIController.GetUserID(), (RoomList: any[]) => {
+            console.log(RoomList)
         })
     }
 

@@ -30,6 +30,7 @@ export class CreateRoomPopup extends Component {
         this.Loading.active = true
         APIController.GetInstance().CallAPI(
             APINames.CreateRoom,
+            APIController.GetUserID(),
             Name,
             RoomPass,
             () => {

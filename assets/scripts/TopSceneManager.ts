@@ -21,7 +21,7 @@ export class TopSceneManager extends Component {
     RoomListView : Node = new Node()
 
     prepare() {
-        APIController.SetSocket(window.io())
+        APIController.SetSocket(window.io('http://localhost:12800'))
         director.preloadScene('MainScene')
     }
 

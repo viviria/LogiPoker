@@ -1,6 +1,6 @@
 export class GameManager {
     private static _instance : GameManager | null = null
-    private static _IsPlayerLogin : boolean = false
+    private _IsPlayerLogin : boolean = false
 
     private constructor() {
     }
@@ -12,8 +12,8 @@ export class GameManager {
         return GameManager._instance
     }
 
-    static UserLogin() { this._IsPlayerLogin = true }
-    static get IsUserLogin() : boolean { return this._IsPlayerLogin }
+    UserLogin() { this._IsPlayerLogin = true }
+    get IsUserLogin() : boolean { return this._IsPlayerLogin }
 }
 
 export default GameManager

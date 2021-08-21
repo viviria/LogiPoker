@@ -1,6 +1,6 @@
 
 import { _decorator, Component, JsonAsset, SpriteAtlas, randomRangeInt, Prefab, Node, instantiate, Sprite, Socket } from 'cc';
-import { NumberCard, FunctionCard } from './Cards';
+import { NumberCard, FunctionCard } from './card/Cards';
 const { ccclass, property } = _decorator;
 
 const Shuffle = <T>(shuffle_array: Array<T>) => {
@@ -12,8 +12,8 @@ const Shuffle = <T>(shuffle_array: Array<T>) => {
     }
 };
 
-@ccclass('LogPokerManager')
-export class LogPokerManager extends Component {
+@ccclass('LogiPokerManager')
+export class LogiPokerManager extends Component {
     @property
     CanvasNode : Node = new Node()
 
@@ -54,7 +54,7 @@ export class LogPokerManager extends Component {
         Shuffle(this._FunctionCards)
 
         const nc = instantiate(this.NumberCardPrefab)
-        nc.getComponent(Sprite).spriteFrame = this.CardSpriteAtlas.getSpriteFrame(this._NumberCards[0].Name)
+        nc.getComponent(Sprite)!.spriteFrame = this.CardSpriteAtlas.getSpriteFrame(this._NumberCards[0].Name)
         this.CanvasNode.addChild(nc)
     }
 

@@ -2,8 +2,8 @@
 import { _decorator, Component, Node, EditBox } from 'cc';
 const { ccclass, property } = _decorator;
 import { Popup } from './Popup';
-import { APIController } from '../APIController'
-import { APINames } from "../APINames";
+import { APIController } from '../api/APIController'
+import { APINames } from "../api/APINames";
 
 @ccclass('CreateRoomPopup')
 export class CreateRoomPopup extends Component {

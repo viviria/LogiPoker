@@ -1,7 +1,7 @@
 
 import { _decorator, Component, Node, Prefab, Animation, instantiate, Size, Director, loader, Scene, AssetManager, SceneAsset, director } from 'cc';
-import { APIController } from "./APIController";
-import { APINames } from "./APINames";
+import { APIController } from "./api/APIController";
+import { APINames } from "./api/APINames";
 import { Popup } from './ui/Popup';
 import { RoomInfo } from './ui/RoomInfo';
 

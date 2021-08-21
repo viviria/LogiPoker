@@ -36,7 +36,7 @@ export class CreateRoomPopup extends Component {
             (RoomData: any) => {
                 this.Loading.active = false
                 console.log(RoomData)
-                PopupComponent?.close()
+                PopupComponent?.Close()
             }
         )
     }

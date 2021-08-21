@@ -58,6 +58,6 @@ export class TopSceneManager extends Component {
         PopupComponent?.SetCloseCallback(() => {
             this.CreateRoomPopup.active = false
         })
-        PopupComponent?.open()
+        PopupComponent?.Open()
     }
 }

@@ -1,5 +1,5 @@
 
-import { _decorator, Component, Node, Animation, AnimationClip } from 'cc';
+import { _decorator, Component, Node, Animation, AnimationClip, AnimationState } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Popup')
@@ -7,20 +7,31 @@ export class Popup extends Component {
     private _CloseCallback : any = null
     private _IsOpen : boolean = false
 
-    open() {
+    GetAnimationState() : AnimationState | undefined {
         const Anim = this.getComponent(Animation)
-        const AnimState = Anim?.getState('OpenCreateRoomPopup')
-        AnimState!.wrapMode = AnimationClip.WrapMode.Normal
-        this._IsOpen = true
+        const AnimName = Anim?.defaultClip?.name || ''
+        return Anim?.getState(AnimName)
+    }
+
+    Play() {
+        const Anim = this.getComponent(Animation)
         Anim?.play()
     }
 
-    close() {
+    Open() {
+        const AnimState = this.GetAnimationState()
+        AnimState!.wrapMode = AnimationClip.WrapMode.Normal
+        this._IsOpen = true
+        this.Play()
+    }
+
+    Close() {
         const Anim  = this.getComponent(Animation)
-        const AnimState = Anim?.getState('OpenCreateRoomPopup')
+        const AnimName = Anim?.defaultClip?.name || ''
+        const AnimState = Anim?.getState(AnimName)
         AnimState!.wrapMode = AnimationClip.WrapMode.Reverse
         this._IsOpen = false
-        Anim?.play()
+        this.Play()
     }
 
     SetCloseCallback(Callback: () => void) {

@@ -1,8 +1,9 @@
 
-import { _decorator, Component, Node, Prefab, Animation, instantiate } from 'cc';
+import { _decorator, Component, Node, Prefab, Animation, instantiate, Size, Director, loader, Scene, AssetManager, SceneAsset, director } from 'cc';
 import { APIController } from "./APIController";
 import { APINames } from "./APINames";
 import { Popup } from './ui/Popup';
+import { RoomInfo } from './ui/RoomInfo';
 
 const { ccclass, property } = _decorator;
 
@@ -16,13 +17,39 @@ export class TopSceneManager extends Component {
     @property
     CreateRoomPopup : Node = new Node()
 
-    start () {
-        this._APIController = APIController.GetInstance()
-        APIController.SetSocket(window.io())
+    @property
+    RoomListView : Node = new Node()
 
-        this._APIController.CallAPI(APINames.UserEnter, APIController.GetUserID(), (RoomList: any[]) => {
-            console.log(RoomList)
+    prepare() {
+        APIController.SetSocket(window.io())
+        director.preloadScene('MainScene')
+    }
+
+    start () {
+        this.prepare()
+        const RoomInfoPanel = this.CreateRoomInfo(0, () => {
+            director.loadScene('MainScene')
         })
+        this.RoomListView.addChild(RoomInfoPanel)
+
+        this._APIController = APIController.GetInstance()
+        this._APIController.CallAPI(APINames.UserEnter, APIController.GetUserID(), (RoomList: any[]) => {
+            for (let i = 0; i < RoomList.length; i++) {
+                const Room = RoomList[i]
+                const RoomInfoPanel = this.CreateRoomInfo(i, () => {
+                    director.loadScene('MainScene')
+                })
+                this.RoomListView.addChild(RoomInfoPanel)
+            }
+        })
+    }
+
+    CreateRoomInfo(Index: number, OnClick: () => void) : Node {
+        const RoomInfoPanel = instantiate(this.RoomInfoPrefab)
+        const RoomInfoSize : Size = RoomInfoPanel.getChildByName('RoomInfo')?.getComponent(RoomInfo)?.GetSize() || new Size(0, 0)
+        RoomInfoPanel.position.set(0, -(Index * RoomInfoSize.height + 5), 0)
+        RoomInfoPanel.getChildByName('RoomInfo')?.getComponent(RoomInfo)?.OnClickEnter(OnClick)
+        return RoomInfoPanel
     }
 
     CreateRoom() {

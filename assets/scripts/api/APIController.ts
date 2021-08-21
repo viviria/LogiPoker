@@ -1,17 +1,17 @@
 import { Socket } from "cc";
 
 export class APIController {
-    private static _instace: APIController;
+    private static _instance: APIController;
     private static _Socket : Socket | null = null;
 
     private constructor() {
     }
 
     static GetInstance(): APIController {
-        if (!APIController._instace) {
-            APIController._instace = new APIController();
+        if (!APIController._instance) {
+            APIController._instance = new APIController();
         }
-        return APIController._instace
+        return APIController._instance
     }
 
     static SetSocket(socket : Socket) {
